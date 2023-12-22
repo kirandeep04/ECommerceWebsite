@@ -1,0 +1,89 @@
+﻿</html>
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ogani | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Sign In</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <h4>Customer Sign-Up</h4>
+                <form asp-controller="Customer" asp-action="Check" method="Post">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="checkout__input">
+                                <label for="fname">Name:</label><br>
+                                <input type="text" id="fname" name="Name"><br>
+                            </div>
+                            <!-- Other form elements... -->
+                            <div class="checkout__input">
+                                <label for="count">Country</label><br>
+                                <input type="text" id="count" name="Country"><br>
+                            </div>
+                            <div class="checkout__input">
+                                <label for="add">Address</label><br>
+                                <input type="text" id="add" name="Address"><br>>
+
+                            </div>
+                            <div class="checkout__input">
+                                <label for="tcity">Towm/City</label><br>
+                                <input type="text" id="tcity" name="Towm/City"><br>
+                            </div> <!-- Other form elements... -->
+                            <div class="checkout__input">
+                                <label for="cstate">State*</label><br>
+                                <input type="text" id="cstate" name="State"><br>
+                            </div>
+                            <div class="checkout__input">
+                                <label for="pnumber">Phone</label><br>
+                                <input type="number" id="pnumber" name="Phone"><br>
+                            </div>
+                            <div class="checkout__input">
+                                <label for="email">Email</label><br>
+                                <input type="text" id="email" name="Email"><br>
+                            </div>
+                            <div class="checkout__input">
+                                <label for="password">Password</label><br>
+                                <input type="password" id="password" name="password"><br>
+                            </div>
+
+                            <button type="submit" class="site-btn">Create Account</button>
+
+                            <a asp-controller="Customer" asp-action="SignIn" class="site-btn">
+                                Sign In
+                            </a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+</body>
+
+</html>

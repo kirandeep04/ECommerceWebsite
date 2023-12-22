@@ -1,0 +1,16 @@
+﻿global using Microsoft.Extensions.Caching.Memory;
+global using E_Commerce_Website.API.Models;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Mvc;
+global using E_Commerce_Website.API.CacheManager;
+global using E_Commerce_Website.API.Data;
+global using E_Commerce_Website.API.Helper;
+global using E_Commerce_Website.API.Repository.IRepository;
+global using System.Linq.Expressions;
+global using E_Commerce_Website.API.Repository;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.IdentityModel.Tokens;
+global using System.Text;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
