@@ -8,14 +8,13 @@
             _context = context;
         }
 
-        public virtual async Task<int> GetRolesAsync(int userId)
+        public async Task<IEnumerable<UserRole>> GetRolesAsync(string username)
         {
             var userRoles = await _context.UserRoles
-              .Where(ur => ur.Userid == userId)
-              .ToListAsync();
+                .Where(ur => ur.User.Username == username) // Assuming User is the navigation property to the User table
+                .ToListAsync();
 
-            // Assuming you want to return the count of roles for the user
-            return userRoles.Count;
+            return userRoles;
         }
     }
 }

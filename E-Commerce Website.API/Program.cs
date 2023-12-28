@@ -1,4 +1,6 @@
+using E_Commerce_Website.API;
 using Microsoft.AspNetCore.Hosting;
+using System.Collections.Generic;
 
 namespace ECommerceWebsite.API
 {
@@ -13,6 +15,8 @@ namespace ECommerceWebsite.API
             builder.Services.AddSwaggerGen();
             builder.Services.AddMemoryCache();
             builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+            builder.Services.AddScoped<IUserLogin, UserLoginRepo>();
+            builder.Services.AddScoped<IUserRole, UserRoleRepo>();
             builder.Services.AddScoped(typeof(CacheManager<>));
             
             //Add Services to controller
@@ -54,6 +58,9 @@ namespace ECommerceWebsite.API
                             RequireExpirationTime = true,
                         };
                     });
+            #endregion
+            #region DI
+            builder.Services.AddTransient<JwtService>();
             #endregion
 
             #region AddCors
