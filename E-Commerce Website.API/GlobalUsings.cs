@@ -9,7 +9,6 @@ global using E_Commerce_Website.API.Repository.IRepository;
 global using System.Linq.Expressions;
 global using E_Commerce_Website.API.Repository;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
-global using Microsoft.AspNetCore.Identity;
 global using Microsoft.IdentityModel.Tokens;
 global using System.Text;
 global using System.IdentityModel.Tokens.Jwt;
