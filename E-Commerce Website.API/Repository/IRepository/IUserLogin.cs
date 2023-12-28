@@ -2,5 +2,7 @@
 {
     public interface IUserLogin:IRepository<UserLogin>
     {
+        Task<string> FindByNameAsync(string username);
+        Task<bool> CheckPasswordAsync(string user,string? password);
     }
 }

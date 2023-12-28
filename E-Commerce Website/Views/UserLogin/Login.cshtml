@@ -33,7 +33,7 @@
             box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
         }
     </style>
-    <title>Admin Login</title>
+    <title>User Login</title>
 </head>
 <body>
     <div class="table-responsive">
@@ -41,7 +41,7 @@
             @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
             {
                 <img src="~/img/logo.png" />
-                <h2>Admin Login</h2>
+                <h2>User Login</h2>
                 <form>
                     <div>
                         <label asp-for="Username">Username:</label>
@@ -66,7 +66,7 @@
                     <hr>
                     <br>
                     <div>
-                        <a asp-area="Admin" asp-controller="AdminLogin" asp-action="SignUp">SignUp</a>
+                       <a asp-controller="Authenticate" asp-action="Register">SignUp</a>
                     </div>
                 </form>
             }

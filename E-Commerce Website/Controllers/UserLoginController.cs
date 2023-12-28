@@ -8,10 +8,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace e_commerce_website.controllers
+namespace E_Commerce_Website.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class UserLoginController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -22,6 +20,11 @@ namespace e_commerce_website.controllers
             _configuration = configuration;
             _apiwrapper = httpapiwrapper;
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
             var endpoint = Constants.APIEndpoints.Login;

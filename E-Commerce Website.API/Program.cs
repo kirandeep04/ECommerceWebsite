@@ -14,29 +14,30 @@ namespace ECommerceWebsite.API
             builder.Services.AddMemoryCache();
             builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
             builder.Services.AddScoped(typeof(CacheManager<>));
-
-            #region Identity
+            
+            //Add Services to controller
             builder.Services.AddDbContext<OganiContext>(options =>
                 {
                     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
                 });
-            #endregion
+            
+            //Skip below step if you have your existing tables 
+            //#region Identity
+            //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+            //        .AddEntityFrameworkStores<OganiContext>()
+            //        .AddDefaultTokenProviders();
+            //builder.Services.Configure<IdentityOptions>(options =>
+            //{
+            //    // Default Password settings.
+            //    options.Password.RequireDigit = false;
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = false;
+            //    options.Password.RequiredLength = 6;
+            //});
+            //#endregion
 
-            #region Identity
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<OganiContext>()
-                    .AddDefaultTokenProviders();
-            builder.Services.Configure<IdentityOptions>(options =>
-            {
-                // Default Password settings.
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 6;
-            });
-            #endregion
-
+            //JWT configuration IMP
             #region JwtAuthentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
