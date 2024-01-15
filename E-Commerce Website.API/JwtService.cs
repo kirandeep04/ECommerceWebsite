@@ -10,7 +10,7 @@ namespace E_Commerce_Website.API
         {
             _configuration = configuration;
         }
-        public string GenerateToken(IEnumerable<Claim> claims)
+        public JWTResponse GenerateToken(IEnumerable<Claim> claims)
         {
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Key"]));
             var token = new JwtSecurityToken(
@@ -19,9 +19,15 @@ namespace E_Commerce_Website.API
                 expires: DateTime.Now.AddMinutes(30),
                 claims: claims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                );
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            );
 
+            var JwtResponse = new JWTResponse()
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(token)
+            };
+
+            return JwtResponse;
         }
+
     }
 }

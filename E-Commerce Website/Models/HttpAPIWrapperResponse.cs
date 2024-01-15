@@ -6,6 +6,6 @@ namespace E_Commerce_Website.Models
     {
         public HttpStatusCode StatusCode { get; set; }
         public bool IsSuccess { get; set; }
-        public T data { get; set; }
+        public T? data { get; set; }
     }
 }

@@ -2,8 +2,8 @@
 {
     public class UserRoleRepo : Repository<UserRole>, IUserRole
     {
-        private readonly OganiContext _context;
-        public UserRoleRepo(OganiContext context) : base(context)
+        private readonly Ogani1Context _context;
+        public UserRoleRepo(Ogani1Context context) : base(context)
         {
             _context = context;
         }
@@ -21,11 +21,10 @@
             try
             {
                 var userRoles = await _context.UserRoles
-                    .Include(ur => ur.Role)
+                    .Include(ur => ur.Roles)
                     .Include(ur => ur.User)
-                    .Where(ur => ur.User.Username == username)
+                    .Where(ur => ur.User.Name == username)
                     .ToListAsync();
-
                 return userRoles;
             }
             catch (Exception ex)
@@ -36,5 +35,5 @@
 
     }
 }
-    }
-}
+
+

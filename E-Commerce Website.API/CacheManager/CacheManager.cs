@@ -1,4 +1,6 @@
-﻿namespace E_Commerce_Website.API.CacheManager
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace E_Commerce_Website.API.CacheManager
 {
     public class CacheManager<T> where T : class
     {
@@ -11,7 +13,7 @@
         public List<T> Get(string key)
         {
             var ListTEntity = default(List<T>);
-            if (_cache.TryGetValue(key, out List<T> CachedData))
+            if (_cache.TryGetValue(key,out List<T> CachedData))
             {
                 ListTEntity = CachedData;
             }
@@ -25,7 +27,5 @@
                 SlidingExpiration = TimeSpan.FromMinutes(1)
             });
         }
-
-       
     }
 }

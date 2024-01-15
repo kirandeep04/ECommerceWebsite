@@ -1,10 +1,13 @@
-﻿namespace E_Commerce_Website.API.Repository
+﻿using E_Commerce_Website.API.CacheManager;
+using Microsoft.EntityFrameworkCore;
+
+namespace E_Commerce_Website.API.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly OganiContext _context;
+        private readonly Ogani1Context _context;
 
-        public Repository(OganiContext context)
+        public Repository(Ogani1Context context)
         {
             _context = context;
         }
@@ -13,6 +16,7 @@
         {
             _context.Set<T>().Add(entity);
             await SaveChangesAsync();
+
         }
 
         public virtual async Task<int> Delete(int id)

@@ -1,6 +1,5 @@
 using E_Commerce_Website.API;
-using Microsoft.AspNetCore.Hosting;
-using System.Collections.Generic;
+using E_Commerce_Website.API.Mapper;
 
 namespace ECommerceWebsite.API
 {
@@ -16,15 +15,14 @@ namespace ECommerceWebsite.API
             builder.Services.AddMemoryCache();
             builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
             builder.Services.AddScoped<IUserLogin, UserLoginRepo>();
-            builder.Services.AddScoped<IUserRole, UserRoleRepo>();
-            builder.Services.AddScoped(typeof(CacheManager<>));
-            
+            builder.Services.AddTransient(typeof(CacheManager<>));
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+            builder.Services.AddTransient<JwtService>();
+         
             //Add Services to controller
-            builder.Services.AddDbContext<OganiContext>(options =>
-                {
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-                });
-            
+       
+            builder.Services.AddDbContext<Ogani1Context>(options =>  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+
             //Skip below step if you have your existing tables 
             //#region Identity
             //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
@@ -41,7 +39,7 @@ namespace ECommerceWebsite.API
             //});
             //#endregion
 
-            //JWT configuration IMP
+            ////JWT configuration IMP
             #region JwtAuthentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
@@ -58,9 +56,6 @@ namespace ECommerceWebsite.API
                             RequireExpirationTime = true,
                         };
                     });
-            #endregion
-            #region DI
-            builder.Services.AddTransient<JwtService>();
             #endregion
 
             #region AddCors

@@ -1,6 +1,7 @@
 using E_Commerce_Website.Bootstraper;
 using E_Commerce_Website.Helpers;
 using E_Commerce_Website.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("Jwt"));
 builder.Services.AddHttpNamedClients(builder.Configuration);
 builder.Services.AddTransient<HttpAPIWrapper>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x => x.LoginPath = "/UserLogin/Login");
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

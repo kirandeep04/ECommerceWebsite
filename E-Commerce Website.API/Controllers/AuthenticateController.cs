@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Immutable;
+
 namespace E_Commerce_Website.API.Controllers
 {
     [Route("api/[controller]")]
@@ -7,18 +9,39 @@ namespace E_Commerce_Website.API.Controllers
     {
         private readonly IUserLogin _userLogin;
         private readonly IConfiguration _configuration;
-        private readonly IUserRole _userRole;
+
         private readonly JwtService _jwtService;
 
-        public AuthenticateController(IUserLogin userLogin, IUserRole userRole, JwtService jwtService, IConfiguration configuration)
+        public AuthenticateController(IUserLogin userLogin, JwtService jwtService, IConfiguration configuration)
         {
             _userLogin = userLogin;
             _configuration = configuration;
-            _userRole = userRole;
             _jwtService = jwtService;
         }
         [HttpPost]
         [Route("Login")]
+        public async Task<IActionResult> Login(LoginModel model)
+        {
+
+            var user = await _userLogin.FindUserByEmailAsync(model.Username);
+
+
+            if (user != null && user.Password == model.Password)
+            {
+
+
+                var authClaims = new List<Claim>
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, model.Username),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                };
+
+
+                return Ok(_jwtService.GenerateToken(authClaims));
+            }
+            return Unauthorized();
+        }
+
         //        public async Task<IActionResult> Login(LoginModel model)
         //        {
         //            if (ModelState.IsValid)
@@ -43,34 +66,7 @@ namespace E_Commerce_Website.API.Controllers
 
 
 
-
-
-
-
-        public async Task<IActionResult> Login(LoginModel model)
-        {
-            var user = await _userLogin.FindByNameAsync(model.Username);
-            if (user != null && (await _userLogin.CheckPasswordAsync(user, model.Password)))
-            {
-                var userRoles = await _userRole.GetRolesAsync(user);
-                var authClaims = new List<Claim>
-                        {
-                            new Claim(JwtRegisteredClaimNames.Name, model.Username),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                        };
-
-                foreach (var userRole in userRoles)
-                {
-                    authClaims.Add(new Claim(ClaimTypes.Role, userRole.Role.Name));
-                    //authClaims.Add(new Claim("UserRole", userRole?.RoleName?.ToString()));
-                }
-
-                return Ok(_jwtService.GenerateToken(authClaims));
-            }
-
-            return Unauthorized();
-        }
     }
 }
-        
-    
+
+

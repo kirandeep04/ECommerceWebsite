@@ -2,8 +2,8 @@
 {
     public class ProductRepo : Repository<Product>, IProduct
     {
-        private readonly OganiContext _context;
-        public ProductRepo(OganiContext context) : base(context)
+        private readonly Ogani1Context _context;
+        public ProductRepo(Ogani1Context context) : base(context)
         {
             _context = context;
         }

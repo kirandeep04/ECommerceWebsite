@@ -1,0 +1,41 @@
+﻿@model E_Commerce_Website.Areas.Admin.Models.CategoryUIViewModel
+<h2>Create Category</h2>
+@{
+    //ViewData["Title"] = "Create";
+} <img src="~/img/logo.png" />
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="createModalLabel">Create Category</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form asp-area="Admin" asp-Controller="Category" asp-action="Create" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label asp-for="Name">Name</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="IsActive">IsActive</label>
+                        <input asp-for="IsActive" class="form-check-input" />
+                        <span asp-validation-for="IsActive" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+            <div>
+                @Html.ActionLink("Back", "Index")
+            </div>
+        </div>
+    </div>
+</div>

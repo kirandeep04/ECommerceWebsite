@@ -1,24 +1,27 @@
-﻿namespace E_Commerce_Website.API.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace E_Commerce_Website.API.Models;
 
 public partial class Category
 {
-    public int Categoryid { get; set; }
+    public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; }
 
-    public DateTime Createdon { get; set; }
+    public DateTime? CreatedOn { get; set; }
 
-    public int Createdby { get; set; }
+    public int? CreatedBy { get; set; }
 
-    public DateTime Updatedon { get; set; }
+    public DateTime? UpdatedOn { get; set; }
 
-    public int Updatedby { get; set; }
+    public int? UpdatedBy { get; set; }
 
-    public bool Isactive { get; set; }
+    public bool? IsActive { get; set; }
 
-    public virtual UserLogin CreatedbyNavigation { get; set; } = null!;
+    public virtual UserLogin? CreatedByNavigation { get; set; }
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 
-    public virtual UserLogin UpdatedbyNavigation { get; set; } = null!;
+    public virtual UserLogin? UpdatedByNavigation { get; set; }
 }

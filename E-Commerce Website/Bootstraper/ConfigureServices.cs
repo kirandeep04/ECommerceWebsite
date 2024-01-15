@@ -8,7 +8,7 @@ namespace E_Commerce_Website.Bootstraper
         {
             services.AddHttpClient(Constants.HttpNamedClients.API, c =>
             {
-                c.BaseAddress = new Uri(configuration["Settings.APIBaseUrl"]);
+                c.BaseAddress = new Uri(configuration["Settings:APIBaseUrl"]);
 
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
             });

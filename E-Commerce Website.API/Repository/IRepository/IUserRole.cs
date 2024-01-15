@@ -2,6 +2,7 @@
 {
     public interface IUserRole : IRepository<UserRole>
     {
-        Task <IEnumerable<UserRole>>GetRolesAsync(string user);
+        // Task <IEnumerable<UserRole>>GetRolesAsync(string user);
+        Task<List<UserRole>> GetRolesAsync(string username);
     }
 }

@@ -2,8 +2,8 @@
 {
     public class RolesRepo : Repository<Role>, IRoles
     {
-        private readonly OganiContext _context;
-        public RolesRepo(OganiContext context) : base(context)
+        private readonly Ogani1Context _context;
+        public RolesRepo(Ogani1Context context) : base(context)
         {
             _context = context;
         }

@@ -4,8 +4,10 @@
     {
         public static class APIEndpoints
         {
-            public const string Login = "Authenticate/Login";
+            public const string Login = "Authenticate/Login";            
             public const string Register = "Authenticate/Register";
+            public const string Index = "Category/GetAllCategories";
+            public const string Create = "Category/CreateCategory";
         }
         //public static class APIEndpoint
         //{
